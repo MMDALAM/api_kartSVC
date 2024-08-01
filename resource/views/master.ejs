@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="نمایشport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>پنل مدیریت</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+    <link rel="stylesheet" href="/css/bootstrap-min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-rtl.min.css" />
+    <link rel="stylesheet" href="/css/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/css/dashboard.rtl.css" />
+    <link rel="stylesheet" href="/css/vazir.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/admin.png" />
+
+    <%- style %>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a
+        class="navbar-brand col-sm-3 col-md-2 mr-0"
+        style="color: #000; background-color: #f8f9fa"
+      >
+        Admin
+      </a>
+      <% if (url === '/login') { %> <% }else{ %>
+      <a
+        href="/api/admin/logout"
+        style="
+          border: 1px solid black;
+          padding: 5px;
+          margin: 5px;
+          text-decoration: none;
+          background-color: #f8f9fa;
+          color: #000;
+          border-radius: 10px;
+          font-size: 1rem;
+          font-weight: 600;
+        "
+        >خروج</a
+      >
+      <% } %>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-md-12 mr-sm-auto col-lg-10 pt-5 px-5">
+          <%- body %>
+        </main>
+      </div>
+    </div>
+
+    <script src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="/js/1.12.9.popper.min.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
+    <script src="/js/dom.js"></script>
+    <script src="/js/js.js"></script>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/color-modes.js"></script>
+    <script src="/js/chart.umd.min.js"></script>
+    <!-- Icons -->
+
+    <%- script %>
+  </body>
+</html>

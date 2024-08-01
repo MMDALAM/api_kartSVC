@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link <%= url == '/' ? 'active' : '' %>"
+              href="/api/admin"
+            >
+              <span data-feather="shopping-cart"></span>
+              انالیز سایت
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link <%= url == '/courses' ? 'active' : '' %>"
+              href="/api/admin/oilChanger"
+            >
+              <span data-feather="file"></span>
+              تعویض روغنی
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link <%= url == '/users' ? 'active' : '' %>"
+              href="/api/admin/users"
+            >
+              <span data-feather="users"></span>
+              کاربران
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>نام</th>
+        <th>شماره تلفن</th>
+        <th>پلاک</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let num = 1 %> <% users.docs.forEach(user => { %>
+      <tr>
+        <td><%= num %></td>
+        <td><%= user.firstName %> <%= user.lastName %></td>
+        <td><%= user.phone %></td>
+        <td>
+          <% user.plate.forEach(plate =>{ %> <%= plate.plate %><br />
+          <% }) %>
+        </td>
+      </tr>
+      <% num++ }); %>
+    </tbody>
+  </table>
+</div>
+
+<script
+  src="../js/bootstrap.bundle.min.js"
+  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+  crossorigin="anonymous"
+></script>
+<script src="../js/dashboard.js"></script>

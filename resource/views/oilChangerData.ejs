@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a
+                class="nav-link <%= url == '/' ? 'active' : '' %>"
+                href="/api/admin"
+              >
+                <span data-feather="shopping-cart"></span>
+                انالیز سایت
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+              class="nav-link <%= url == '/oilChanger' ? 'active' : '' %>"
+                href="/api/admin/oilChanger"
+              >
+                <span data-feather="file"></span>
+                تعویض روغنی
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link <%= url == '/users' ? 'active' : '' %>"
+                href="/api/admin/users"
+              >
+                <span data-feather="users"></span>
+                کاربران
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+<div class="d-flex justify-content-between align-items-center mb-3 border-bottom-1">
+    <h2>مدیریت حساب <%= users.phone %></h2>
+    <div class="btn-group">
+        <a onclick="window.history.go(-1)" class="btn btn-warning">بازگشت</a>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered" style="width: 100%">
+        <tr>
+            <th>نام :</th>
+            <td><%= users.firstName %><%= users.lastName %></td>
+        </tr>
+        <tr>
+            <th> تلفن کاربر :</th>
+            <td><%= users.phone %></td>
+        </tr>
+        <tr>
+            <th>نام تعویض روغنی :</th>
+            <td><%= users.oilChanger.name %></td>
+        </tr>
+        <tr>
+            <th>تلفن تعویض روغنی :</th>
+            <td><%= users.oilChanger.phone %></td>
+        </tr>
+        <tr>
+            <th>آدرس تعویض روغنی :</th>
+            <td><%= users.oilChanger.address %></td>
+        </tr>
+        <tr>
+            <th> کارت ملی:</th>
+            <td><img src="uploads/oilChanger/2024/6/1/1717405280866.jpg"  alt="user" fill="currentColor" class="bi bi-person-circle me-2" style="border-radius: 50%;width:75px !important; height:75px !important" viewBox="0 0 16 16"></img></td>
+        </tr>
+        <tr>
+            <th> پروانه کسب:</th>
+            <td><img src="<%= users.oilChanger.license.image %>"  alt="user" fill="currentColor" class="bi bi-person-circle me-2" style="border-radius: 50%;width:75px !important; height:75px !important" viewBox="0 0 16 16"></img></td>
+        </tr>
+        <tr>
+            <th>تاریخ ثبت تعویض روغنی:</th>
+            <td><%= moment(users.oilChanger.createdAt).format('jD jMMMM jYYYY') %> / 
+                <%= moment(users.oilChanger.createdAt).fromNow() %>
+            </td>
+        </tr>
+        <tr>
+            <th>تاییدیه تعویض روغنی :</th>
+            <td><a style="color: white;" class='<%= (users.isOilChanger)  ? "btn btn-success" : "btn btn-warning" %>' ><%= (users.isOilChanger) ?  " تایید شده": " درحال بررسی "  %> </a></td>
+        </tr>
+        <tr>
+          <th>بررسی تعویض روغن:</th>
+          <td><a href="/api/admin/oilChanger/isOil/<%= users.oilChanger.id %>" class='<%= (users.isOilChanger) ? "btn btn-danger" : "btn btn-primary" %>' ><%= (users.isOilChanger) ? "لغو کردن اتوسرویس": " تایید کردن اتوسرویس " %></a></td>
+      </tr>
+    </table>
+</div>
+<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+    <a href="/api/admin/oilChanger/image/license/<%= users.oilChanger.id %>"  class='<%= users.oilChanger.license.status == 3 ? "btn btn-success" : "btn btn-danger" %>' ><%= users.oilChanger.license.status == 3 ?  " پروانه کسب تایید شده ": " تایید پروانه کسب "  %> </a>
+
+    <a href="/api/admin/oilChanger/image/idCard/<%= users.oilChanger.id %>" class='<%= (users.oilChanger.idCard.status == 3) ? "btn btn-success" : "btn btn-danger" %>' ><%= (users.oilChanger.idCard.status == 3) ? "کارت ملی تایید شده ": " تایید کارت ملی " %></a>
+    </div>
+
+<script src="../js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="../js/dashboard.js"></script>
+
